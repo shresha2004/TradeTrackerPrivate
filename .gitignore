@@ -34,3 +34,6 @@ Thumbs.db
 
 # Coverage folders
 coverage/
+# Python virtual environment
+env/
+venv/
