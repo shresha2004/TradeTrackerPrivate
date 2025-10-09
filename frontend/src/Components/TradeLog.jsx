@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import TradeEntryForm from '../Components/TradeEntryForm';
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 
  const TradeLog = ()=>{
@@ -20,7 +21,7 @@ import TradeEntryForm from '../Components/TradeEntryForm';
     const email=localStorage.getItem("Email")
     try{
 
-        const response =await axios.get("http://localhost:4501/TradeEntryForm",{headers:{
+        const response =await axios.get(`${backendUrl}/TradeEntryForm`,{headers:{
           email:email
         }},{withCredentials:true});
 
@@ -43,7 +44,7 @@ const imageView=(url)=>{
    const remove=async(id)=>{
     
 
-    const response=await axios.delete(`http://localhost:4501/TradeEntryForm/${id}`,id)
+    const response=await axios.delete(`${backendUrl}/TradeEntryForm/${id}`,id)
     
     fetchData()
    }

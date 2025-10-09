@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 
 const TradeEntryForm = ({ onAddTrade, onClose }) => {
@@ -51,7 +52,7 @@ const TradeEntryForm = ({ onAddTrade, onClose }) => {
     try {
       console.log("Email is sent to backend:",email)
 
-      const response = await axios.post("http://localhost:4501/TradeEntryForm",updatedFormData,{withCredentials:true});
+      const response = await axios.post(`${backendUrl}/TradeEntryForm`,updatedFormData,{withCredentials:true});
 
       console.log(response.data);
     } catch (err) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const RegistrationForm = ({ closeRegisterForm }) => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const RegistrationForm = ({ closeRegisterForm }) => {
     e.preventDefault();
     try {
 
-      const response = await axios.post('http://localhost:4501/register', { email, password });
+      const response = await axios.post(`${backendUrl}/register`, { email, password });
 
       setMessage(response.data);
     } catch (error) {

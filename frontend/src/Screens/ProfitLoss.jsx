@@ -10,6 +10,7 @@ import {Container,Row,Col} from 'react-bootstrap';
 import TradeCard from '../Components/TradeCard';
 import Footer from '../Layouts/Footer'
 const alphavantagekey1=import.meta.env.VITE_ALPHAVANTAGE_KEY1
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 function ProfitLoss() {
    
@@ -50,7 +51,7 @@ function ProfitLoss() {
         const email= localStorage.getItem('Email')
         try {
 
-            const result = await axios.get("http://localhost:4501/stocks",{headers:{
+            const result = await axios.get(`${backendUrl}/stocks`,{headers:{
                 'email':email
             }},{ withCredentials: true });
 
@@ -82,7 +83,7 @@ function ProfitLoss() {
         try {
             
 
-            const response = await axios.post("http://localhost:4501/", { symbol, entryPrice, stopLoss, target, quantity,email },{ withCredentials: true });
+            const response = await axios.post(`${backendUrl}/`, { symbol, entryPrice, stopLoss, target, quantity,email },{ withCredentials: true });
 
             setFlashMessage("Added successfully");
             setShowInputs(false);
@@ -130,7 +131,7 @@ function ProfitLoss() {
         try{
            
 
-        await axios.delete(`http://localhost:4501/stocks/${id}`,id,{ withCredentials: true })
+        await axios.delete(`${backendUrl}/stocks/${id}`,id,{ withCredentials: true })
 
       
         fetchData()

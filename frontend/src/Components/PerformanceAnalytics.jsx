@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, LineElement, PointElement } from 'chart.js';
 import Footer from '../Layouts/Footer';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 ChartJS.register(
     CategoryScale,
@@ -30,7 +31,7 @@ const PerformanceAnalytics = () => {
             const email= localStorage.getItem('Email');
            
 
-            const response = await axios.get('http://localhost:4501/TradeEntryForm',{headers:{
+            const response = await axios.get(`${backendUrl}/TradeEntryForm`,{headers:{
                 'email':email
             }},{withCredentials:true});
 

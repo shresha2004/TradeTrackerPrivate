@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Contexts/AuthContext';
 import FlashMessage from './FlashMessage';
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const LoginForm = ({ closeLoginForm }) => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ const LoginForm = ({ closeLoginForm }) => {
     e.preventDefault();
     try {
       console.log("HandleSubmit triggered")
-      const response = await axios.post('http://localhost:4501/login', { email, password },{ withCredentials: true });
+      const response = await axios.post(`${backendUrl}/login`, { email, password },{ withCredentials: true });
 
       if (response.data === 'Login successful') {
         localStorage.setItem('Email',email)
